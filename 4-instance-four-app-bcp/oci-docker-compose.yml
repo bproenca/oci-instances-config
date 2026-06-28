@@ -1,0 +1,49 @@
+services:
+  db-keep-alive-bcp-app:
+    image: bproenca/db-keep-alive-bcp-app:v4
+    #restart: always
+    ports:
+      - "8686:8080"
+    logging:
+      options:
+        max-size: "50m"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/db/actuator/health"]
+      #test: ["CMD", "curl", "-f", "http://localhost:8080/db/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 45s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 250M
+    env_file:
+      - .env-ora
+    volumes:
+      - /opt/oci_wallet:/opt/oci_wallet
+      - /opt/wallet_oci_23ai:/opt/wallet_oci_23ai
+  mysql-bcp-app:
+    image: bproenca/mysql-bcp-app:v3
+    #restart: always
+    ports:
+      - "8787:8080"
+    logging:
+      options:
+        max-size: "50m"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/mysql/actuator/health"]
+      #test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 45s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 275M
+    env_file:
+      - .env-mysql
+

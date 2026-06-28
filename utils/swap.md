@@ -10,4 +10,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab # persist across rebo
 
 echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swap.conf
 sudo sysctl -p /etc/sysctl.d/99-swap.conf
+
+swapon --show
+free -h
 ```
