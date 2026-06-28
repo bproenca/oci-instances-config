@@ -1,0 +1,50 @@
+services:
+  crud-bcp:
+    image: bproenca/crud-bcp:v4
+    #restart: always
+    volumes:
+      - "/opt/oci_wallet:/opt/oci_wallet"
+    ports:
+      - "8585:8080"
+    logging:
+      options:
+        max-size: "50m"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/crud/actuator/health"]
+      #test: ["CMD", "curl", "-f", "http://localhost:8585/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 300M
+    env_file:
+      - .env-ora-crud
+  db-keep-alive-bcp-app:
+    image: bproenca/db-keep-alive-bcp-app:v4
+    #restart: always
+    ports:
+      - "8686:8080"
+    logging:
+      options:
+        max-size: "50m"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8080/db/actuator/health"]
+      #test: ["CMD", "curl", "-f", "http://localhost:8686/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 250M
+    env_file:
+      - .env-ora-keep
+    volumes:
+      - /opt/oci_wallet:/opt/oci_wallet
+      - /opt/wallet_oci_23ai:/opt/wallet_oci_23ai

@@ -1,0 +1,4 @@
+docker compose -f bcp-docker-compose.yml up -d
+docker compose -f bcp-docker-compose.yml down
+docker logs -f wks-db-keep-alive-bcp-app-1
+docker logs -f wks-crud-1
