@@ -1,10 +1,10 @@
 #!/bin/bash
 
-LOG_FILE="/home/ubuntu/wks/log_health_check.log"
+LOG_FILE="/home/ubuntu/oci-instances-config/4-instance-four-app-bcp/log_health_check.log"
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 printf "\n$TIMESTAMP - Health check running\n" | tee --append $LOG_FILE
 
-DOCKER_COMPOSE_PATH="/home/ubuntu/wks/oci-docker-compose.yml"
+DOCKER_COMPOSE_PATH="/home/ubuntu/oci-instances-config/4-instance-four-app-bcp/oci-docker-compose.yml"
 URLS=(
     "localhost:8787/mysql/actuator/health"
     "localhost:8686/db/actuator/health"
