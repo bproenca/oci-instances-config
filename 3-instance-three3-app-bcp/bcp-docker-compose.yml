@@ -1,6 +1,6 @@
 services:
   crud-bcp:
-    image: bproenca/crud-bcp:v5
+    image: bproenca/crud-bcp:v4
     #restart: always
     volumes:
       - "/opt/oci-wallet/19c_db4bcp:/opt/oci-wallet/19c_db4bcp"
