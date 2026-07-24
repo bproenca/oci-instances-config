@@ -1,9 +1,9 @@
 services:
   crud-bcp:
-    image: bproenca/crud-bcp:v4
+    image: bproenca/crud-bcp:v5
     #restart: always
     volumes:
-      - "/opt/oci_wallet:/opt/oci_wallet"
+      - "/opt/oci-wallet/19c_db4bcp:/opt/oci-wallet/19c_db4bcp"
     ports:
       - "8585:8080"
     logging:
@@ -24,7 +24,7 @@ services:
     env_file:
       - .env-ora-crud
   db-keep-alive-bcp-app:
-    image: bproenca/db-keep-alive-bcp-app:v4
+    image: bproenca/db-keep-alive-bcp-app:v5
     #restart: always
     ports:
       - "8686:8080"
@@ -46,5 +46,5 @@ services:
     env_file:
       - .env-ora-keep
     volumes:
-      - /opt/oci_wallet:/opt/oci_wallet
-      - /opt/wallet_oci_23ai:/opt/wallet_oci_23ai
+      - /opt/oci-wallet/19c_db4bcp:/opt/oci-wallet/19c_db4bcp
+      - /opt/oci-wallet/26ai_db:/opt/oci-wallet/26ai_db

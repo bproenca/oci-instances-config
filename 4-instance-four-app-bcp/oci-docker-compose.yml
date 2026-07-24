@@ -22,8 +22,8 @@ services:
     env_file:
       - .env-ora
     volumes:
-      - /opt/oci_wallet:/opt/oci_wallet
-      - /opt/wallet_oci_23ai:/opt/wallet_oci_23ai
+      - /opt/oci-wallet/19c_db4bcp:/opt/oci-wallet/19c_db4bcp
+      - /opt/oci-wallet/26ai_db:/opt/oci-wallet/26ai_db
   mysql-bcp-app:
     image: bproenca/mysql-bcp-app:v3
     #restart: always
