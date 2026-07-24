@@ -1,6 +1,6 @@
 services:
   db-keep-alive-bcp-app:
-    image: bproenca/db-keep-alive-bcp-app:v4
+    image: bproenca/db-keep-alive-bcp-app:v5
     #restart: always
     ports:
       - "8686:8080"
